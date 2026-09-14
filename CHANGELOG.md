@@ -14,3 +14,10 @@
   (`logo-mark-small.png`, ~11KB), embutida como base64 pra manter cada
   HTML autocontido. Badge azul atrás do ícone foi removido — a marca já
   é bicolor, então o fundo `--brand` gerava azul-sobre-azul.
+- feat(mobile): cria `visao_geral_lhamalog.html`, a versão "de produção"
+  já prevista no design.md: responsiva de verdade (fluida no celular,
+  centralizada num cartão de até 480px no PC, mesma fidelidade visual
+  nos dois), sem moldura de celular, com nav inferior fixa na viewport e
+  o mesmo toggle de tema claro/escuro. `index.html`, `index_dark.html`
+  e `index_light.html` continuam intactos como mockup de tamanho fixo
+  pra print/apresentação.

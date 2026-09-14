@@ -71,7 +71,7 @@ puro). Você explica toda decisão de design com o porquê, não só o quê.
 
 | Arquivo | O que é | Quando editar |
 |---|---|---|
-| `visao_geral_lhamalog.html` | Versão "de produção" — rola até o fim, sem moldura. É a que vira componente real do app. | Mudança de conteúdo/dado/comportamento real |
+| `visao_geral_lhamalog.html` | Versão "de produção" — responsiva de verdade, sem moldura de celular, rola até o fim. Fluida no celular (100% da largura) e centralizada num cartão de até 480px no PC, com a mesma cara nos dois. Nav inferior fixa na viewport (`position:fixed`), toggle de tema igual ao `index.html`. É a que vira componente real do app. | Mudança de conteúdo/dado/comportamento real, ou qualquer ajuste de responsividade |
 | `index.html` | Versão "geral" — une os dois temas num arquivo só, com moldura de celular fixa e botão de alternância claro/escuro (`toggleTheme()`), tema claro como padrão. É a versão canônica pra navegar os dois temas sem abrir dois arquivos. | Mudança visual pra mockup/apresentação, ou qualquer ajuste de token de cor (afeta os dois temas de uma vez) |
 | `index_dark.html` | Snapshot fixo em tema escuro (sem toggle visível na intenção de uso, ainda que o botão exista) — útil pra gerar um print estático só do escuro | Mesma coisa, mas quando só o print do tema escuro importa |
 | `index_light.html` | Snapshot fixo em tema claro, mesma lógica do `index_dark.html` | Mesma coisa, mas quando só o print do tema claro importa |
@@ -177,17 +177,36 @@ variável correspondente nos dois blocos.
 
 ## Como testar antes de entregar
 
-Não existe ambiente de browser interativo neste projeto — teste renderizando:
+`wkhtmltoimage` não está instalado nesta máquina (checar antes de assumir
+que está). Alternativa validada: usar o `chrome.exe` já instalado no
+Windows.
+
+**Evite `chrome.exe --headless --screenshot=... --window-size=W,H`** — em
+telas estreitas (ex.: 390px, tamanho de celular) esse modo tem um bug de
+captura que corta/estoura o conteúdo mesmo quando o layout real está
+correto (confirmado comparando com medição via CDP). Isso já gerou um
+falso positivo de "quebrou no celular" nesta sessão.
+
+Prefira medir/capturar via **Chrome DevTools Protocol** (confiável em
+qualquer largura):
 
 ```bash
-wkhtmltoimage --width 460 --height 900 index.html preview.png
+chrome.exe --headless --disable-gpu --remote-debugging-port=9333 \
+  --remote-allow-origins=* "file:///caminho/arquivo.html"
 ```
 
-Abra o PNG gerado e confira visualmente antes de considerar a tarefa
-concluída. Atenção: `wkhtmltoimage` é um motor antigo e **não suporta
-`display:grid` nem `backdrop-filter`** — use `display:flex` com
-`flex-wrap:wrap` pra qualquer grade, e não dependa de blur pra contraste
-(o fallback de opacidade sólida precisa funcionar sozinho).
+Depois, por Python (`websocket-client` + `requests`), usar
+`Emulation.setDeviceMetricsOverride` pra fixar a largura desejada
+(ex.: 390 pra celular, 1440 pra desktop) e `Page.captureScreenshot` pra
+tirar o print — ou `Runtime.evaluate` com `getBoundingClientRect()` nos
+elementos-chave pra confirmar que nada estoura a viewport antes de
+confiar em qualquer screenshot.
+
+Se `wkhtmltoimage` estiver disponível no ambiente, ele também serve, mas
+lembre que é um motor antigo e **não suporta `display:grid` nem
+`backdrop-filter`** — use `display:flex` com `flex-wrap:wrap` pra
+qualquer grade, e não dependa de blur pra contraste (o fallback de
+opacidade sólida precisa funcionar sozinho).
 
 ---
 
