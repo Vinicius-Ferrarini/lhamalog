@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.1",
+  "asset_id": "llamalog_dashboard_occurrences_mobile",
+  "revision_notes": "v1.1: substitui o modelo 'tudo empilhado em uma rolagem só' por abas (Lista / Análise) logo abaixo do cabeçalho, para reduzir a rolagem na versão mobile. A lista de ocorrências também passa a ser paginada em blocos menores (3 por página) em vez de 6, para evitar uma lista longa antes de chegar nas métricas.",
+  "source_reference": {
+    "source_file": null,
+    "asset_type": "mobile_web_dashboard_ui",
+    "reconstruction_scope": "Evolução de 03_dashboard_ocorrencias.json (desktop) e da v1.0 deste próprio arquivo mobile. Sem imagem raster de origem; layout redesenhado para separar 'o que aconteceu' (lista) de 'como está indo' (análise) em duas abas, em vez de empilhar tudo na mesma página."
+  },
+  "canvas": {
+    "width_px": 390,
+    "height_px": 844,
+    "orientation": "portrait",
+    "color_space": "sRGB",
+    "alpha_channel": true,
+    "background": { "type": "solid", "color": "#EFF9FC" },
+    "reference_device": "iPhone 14 / Android médio, 390x844 @1x",
+    "scroll_behavior": "cada aba rola de forma independente; app bar e seletor de abas fixos no topo"
+  },
+  "global_config": {
+    "responsive_notes": "A sidebar fixa do desktop (246px) vira gaveta off-canvas. A coluna de analytics do desktop (lado a lado com a lista) vira uma aba separada no mobile, em vez de ficar empilhada abaixo da lista. O popover de filtros vira bottom sheet.",
+    "project_palette_reference": "mesma paleta de 01-04 (#141826, #033473, #0C70F2, #0D65D9, #F2F2F2)"
+  },
+  "art_direction": {
+    "layout_strategy": "single_column_stacked_with_tabs: duas visões alternáveis (Lista / Análise) em vez de uma única rolagem longa com tudo junto",
+    "brand_mood": ["técnico", "denso em dados porém organizado", "confiável", "fácil de escanear rapidamente"]
+  },
+  "color_palette": {
+    "reused_from_desktop": [
+      { "hex": "#041B39", "role": "app bar e drawer de navegação" },
+      { "hex": "#0C70F2", "role": "ações primárias, aba ativa e destaques" },
+      { "hex": "#EF2B2D", "role": "severidade erro" },
+      { "hex": "#F5A015", "role": "severidade alerta" },
+      { "hex": "#12B76A", "role": "sucesso / taxa de resolução" },
+      { "hex": "#7A2CF6", "role": "tempo médio de resolução" }
+    ]
+  },
+  "layout": {
+    "type": "tabbed_single_column",
+    "app_bar_height_px": 60,
+    "tab_selector_height_px": 48,
+    "tabs": ["Lista", "Análise"],
+    "default_tab": "Lista",
+    "sections_order_common": ["app_bar", "page_header", "tab_selector"],
+    "sections_order_lista_tab": ["search_and_filter_row", "occurrence_list_paginated"],
+    "sections_order_analise_tab": ["metrics_carousel", "heatmap_card", "impacted_services_card", "kpi_row"],
+    "overlays": ["nav_drawer (esquerda, 280px, off-canvas)", "filter_bottom_sheet (inferior, ~60% da altura, só na aba Lista)"]
+  },
+  "elements": [
+    {
+      "id": "app_bar",
+      "category": "navigation",
+      "bounding_box_px": [0, 0, 390, 60],
+      "z_index": 20,
+      "fixed": true,
+      "description": "Barra fixa navy (#041B39): ícone de menu (abre a gaveta) à esquerda, ícone da lhama pequeno ao lado, à direita sino de notificações com badge e avatar circular do usuário."
+    },
+    {
+      "id": "nav_drawer",
+      "category": "overlay_navigation",
+      "z_index": 40,
+      "trigger": "ícone de menu no app_bar",
+      "description": "Gaveta lateral esquerda (280px), mesmo conteúdo da sidebar desktop: busca, 4 grupos de navegação e rodapé com usuário."
+    },
+    {
+      "id": "page_header",
+      "category": "foreground",
+      "bounding_box_px": [20, 76, 350, 56],
+      "description": "Título 'Ocorrências' e status do sistema (ponto verde + 'Sistema operacional') em uma linha compacta abaixo do título. Sem subtítulo longo, para dar mais espaço às abas."
+    },
+    {
+      "id": "tab_selector",
+      "category": "navigation",
+      "bounding_box_px": [20, 140, 350, 40],
+      "fixed": true,
+      "description": "Segmented control com 2 opções: 'Lista' e 'Análise'. Aba ativa com fundo azul (#0C70F2) e texto branco; aba inativa com fundo transparente/cinza claro e texto navy. Controla qual conteúdo aparece abaixo — troca instantânea, sem recarregar a página.",
+      "default_selected": "Lista"
+    },
+
+    {
+      "id": "search_and_filter_row",
+      "category": "foreground",
+      "tab": "Lista",
+      "bounding_box_px": [20, 192, 350, 48],
+      "description": "Visível apenas na aba Lista. Campo de busca com ícone de lupa + botão quadrado de filtro (ícone + badge '2') que abre um bottom sheet."
+    },
+    {
+      "id": "filter_bottom_sheet",
+      "category": "overlay",
+      "tab": "Lista",
+      "z_index": 40,
+      "trigger": "botão de filtro em search_and_filter_row",
+      "description": "Painel que desliza de baixo cobrindo ~60% da tela, com os 5 campos de filtro do desktop e botões 'Limpar filtros' / 'Aplicar Filtros' fixos na base."
+    },
+    {
+      "id": "occurrence_list_paginated",
+      "category": "foreground",
+      "tab": "Lista",
+      "bounding_box_px": [20, 252, 350, 420],
+      "description": "Lista vertical de cards de ocorrência, mas agora mostrando apenas 3 cards por página (em vez de 6), para não formar uma lista longa antes do usuário poder agir. Cada card mantém: barra de cor por severidade, chip de severidade + horário, título, descrição (até 2 linhas) e no máximo 2 tags visíveis.",
+      "items_per_page": 3,
+      "changed_from_v1.0": "reduzido de 6 para 3 itens por página"
+    },
+    {
+      "id": "pagination_mobile",
+      "category": "foreground",
+      "tab": "Lista",
+      "description": "Paginação compacta abaixo da lista: 'Mostrando 1-3 de 248' e controle '‹ Página 1 de 83 ›' centralizado, usado para avançar entre blocos de 3 ocorrências."
+    },
+
+    {
+      "id": "metrics_carousel",
+      "category": "foreground",
+      "tab": "Análise",
+      "description": "Visível apenas na aba Análise. Carrossel horizontal com scroll-snap contendo os 4 cards de métricas principais (Erros, Alertas, Informações, Resolvidas)."
+    },
+    {
+      "id": "heatmap_card",
+      "category": "foreground",
+      "tab": "Análise",
+      "description": "Heatmap semanal (grade 7x7) de ocorrências por dia, em card de largura total."
+    },
+    {
+      "id": "impacted_services_card",
+      "category": "foreground",
+      "tab": "Análise",
+      "description": "Ranking de serviços mais impactados, em card de largura total."
+    },
+    {
+      "id": "kpi_row",
+      "category": "foreground",
+      "tab": "Análise",
+      "description": "Os dois KPIs (Tempo médio de resolução, Taxa de resolução) lado a lado em 2 colunas."
+    }
+  ],
+  "reproduction_prompt": "Recrie o dashboard de ocorrências do LhamaLog para mobile, viewport 390x844. App bar fixo navy no topo com menu hambúrguer, ícone da marca, sino de notificações e avatar. Abaixo, cabeçalho compacto com título 'Ocorrências' e status do sistema. Logo em seguida, um seletor de abas fixo com duas opções: 'Lista' (padrão, ativa) e 'Análise'. Na aba Lista: busca + botão de filtro (abre bottom sheet), seguido de uma lista de apenas 3 cards de ocorrência por página, com paginação compacta abaixo ('‹ Página 1 de 83 ›'). Na aba Análise: carrossel horizontal de 4 métricas principais, heatmap semanal 7x7, ranking de serviços impactados e os dois KPIs de resolução lado a lado. Trocar de aba não deve recarregar a página, apenas alternar o conteúdo abaixo do seletor. Mesma paleta e conteúdo do desktop.",
+  "negative_prompt": "sem lista de ocorrências e painel de análise na mesma rolagem, sem mais de 3 cards de ocorrência por página, sem sidebar fixa visível permanentemente, sem popover flutuante de filtros (usar bottom sheet), sem alvos de toque menores que 44px",
+  "quality_control": [
+    "App bar e seletor de abas devem permanecer fixos (sticky) durante o scroll.",
+    "Trocar de aba deve ser instantâneo (sem reload) e não deve perder a posição de rolagem da outra aba ao voltar.",
+    "A aba Lista nunca deve mostrar mais de 3 cards de ocorrência simultaneamente.",
+    "Gaveta de navegação e bottom sheet de filtros devem ter overlay de fundo escurecido e fechar ao tocar fora.",
+    "Conteúdo, dados e paleta devem permanecer idênticos ao 03_dashboard_ocorrencias.json; apenas composição, navegação e paginação mudam."
+  ]
+}
