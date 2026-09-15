@@ -71,10 +71,8 @@ puro). Você explica toda decisão de design com o porquê, não só o quê.
 
 | Arquivo | O que é | Quando editar |
 |---|---|---|
-| `visao_geral_lhamalog.html` | Versão "de produção" — responsiva de verdade, sem moldura de celular, rola até o fim. Fluida no celular (100% da largura) e centralizada num cartão de até 480px no PC, com a mesma cara nos dois. Nav inferior fixa na viewport (`position:fixed`), toggle de tema igual ao `index_dark.html`/`index_light.html`. É a que vira componente real do app. | Mudança de conteúdo/dado/comportamento real, ou qualquer ajuste de responsividade |
-| `index.html` | **Não é mais um mockup do dashboard** — é o índice/seletor do site: barra lateral fixa listando todos os `.html` do projeto (lidos de um array `PAGES` fixo no JS, sem build step) + um `<iframe>` que renderiza o arquivo escolhido. Item ativo usa o mesmo padrão visual do `.navtab.active` (pill preenchida com `--brand`). Único elemento fixo é a barra lateral (sticky no desktop, vira faixa horizontal com scroll em telas <720px). | Adicionar/remover um arquivo `.html` do projeto (atualizar o array `PAGES` no `<script>`), ou mudar a navegação do seletor |
-| `index_dark.html` | Snapshot fixo em tema escuro (sem toggle visível na intenção de uso, ainda que o botão exista) — útil pra gerar um print estático só do escuro | Mesma coisa, mas quando só o print do tema escuro importa |
-| `index_light.html` | Snapshot fixo em tema claro, mesma lógica do `index_dark.html` | Mesma coisa, mas quando só o print do tema claro importa |
+| `visao_geral_lhamalog.html` | Versão "de produção" — responsiva de verdade, sem moldura de celular, rola até o fim. Fluida no celular (100% da largura) e centralizada num cartão de até 480px no PC, com a mesma cara nos dois. Nav inferior fixa na viewport (`position:fixed`), toggle de tema claro/escuro próprio (`toggleTheme()`). É a que vira componente real do app. | Mudança de conteúdo/dado/comportamento real, ou qualquer ajuste de responsividade |
+| `index.html` | **Não é mais um mockup do dashboard** — é o índice/seletor do site: barra lateral fixa que lê de verdade os `.html` do repositório consultando a **API do GitHub** (`api.github.com/repos/<owner>/<repo>/contents/`) e mostra num `<iframe>` o arquivo escolhido. Lista é dinâmica (reflete o repo, não um array hard-coded) — funciona em **qualquer navegador** (Chrome, Firefox, Safari, Edge) e tanto em `file://` local quanto publicado no GitHub Pages, porque é só um `fetch` — a API do GitHub já libera CORS pra qualquer origem (`Access-Control-Allow-Origin: *`), testado e confirmado nos dois navegadores. Detecta owner/repo pela própria URL quando publicado em `<owner>.github.io/<repo>/...`; se abrir local (`file://`) cai no fallback fixo `Vinicius-Ferrarini/lhamalog` (ver constantes `FALLBACK_OWNER`/`FALLBACK_REPO` no `<script>`). **Limitação:** a API não-autenticada tem limite de 60 requisições/hora por IP — mais que suficiente pra uso normal, mas pode dar erro "limite atingido" em rajadas de teste; o botão "Atualizar lista" tenta de novo. **Versão anterior descartada:** tentei primeiro a File System Access API (`showDirectoryPicker`) — funciona no Chrome/Edge mas não existe no Firefox, e como o site final vai pro GitHub Pages, a API do GitHub resolve os dois problemas de uma vez (universal + reflete o repo publicado). Item ativo usa o mesmo padrão visual do `.navtab.active` (pill preenchida com `--brand`). Único elemento fixo é a barra lateral (sticky no desktop, vira faixa horizontal com scroll em telas <720px). | Mexer na lógica de leitura do repo ou na navegação do seletor — **não precisa editar nada** só por criar/apagar um `.html`, a lista se atualiza sozinha (ou com "Atualizar lista") |
 | `design.md` | Este arquivo | Sempre que uma decisão de design nova for tomada |
 | `CHANGELOG.md` | Histórico de versões (criar na primeira mudança) | Toda entrega |
 
@@ -110,8 +108,6 @@ variável correspondente nos dois blocos.
 /* heatmap */
 --hm-0 a --hm-5     /* escala de intensidade, menos → mais */
 
-/* cenário do mockup (fora do "vidro" do celular) — não é token do produto */
---studio-bg         /* fundo da página em volta da moldura, só existe em index_dark.html/index_light.html */
 ```
 
 ### Paleta de marca (origem: `paleta-de-cores.jpg` do cliente)
@@ -144,14 +140,18 @@ variável correspondente nos dois blocos.
   fundo transparente, `height:30px; width:auto`, sem badge/fundo colorido
   atrás (removido de propósito — a marca já é bicolor em azul, um fundo
   `--brand` atrás dela virava azul-sobre-azul e derrubava o contraste).
-- **Moldura de celular** (`index_dark.html`/`index_light.html`): `.bezel` +
-  `.screen` com `height` fixa + `overflow:hidden`, `.scroll-area` clipando
-  o meio, `.topbar` e `.navtabs` com `flex-shrink:0` pra nunca sumirem.
-- **Seletor/índice** (`index.html`): `.sidebar` fixa listando os `.html`
-  do projeto (array `PAGES` no JS) + `<iframe>` full-height mostrando o
-  arquivo escolhido. Item ativo reaproveita o padrão do `.navtab.active`
-  (pill com `--brand`). Abaixo de 720px a barra vira uma faixa horizontal
-  com scroll no topo, e o iframe ocupa o resto da altura.
+- **Moldura de celular** (`.bezel`/`.screen` com `height` fixa +
+  `overflow:hidden`, `.scroll-area` clipando o meio): padrão usado nos
+  mockups de tema fixo que existiram (`index_dark.html`/`index_light.html`,
+  apagados) — se recriar um mockup assim, é esse o padrão a seguir.
+- **Seletor/índice** (`index.html`): `.sidebar` fixa que consulta a API do
+  GitHub pra listar os `.html` reais do repositório (real, não array fixo,
+  universal em qualquer navegador) e mostra num `<iframe>` full-height o
+  arquivo escolhido. Exclui `index.html` (a si mesmo) e qualquer arquivo
+  que não termine em `.html`/`.htm` da lista. Item ativo reaproveita o
+  padrão do `.navtab.active` (pill com `--brand`). Abaixo de 720px a barra
+  vira uma faixa horizontal com scroll no topo, e o iframe ocupa o resto
+  da altura.
 
 ---
 

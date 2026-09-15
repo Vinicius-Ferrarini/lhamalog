@@ -40,6 +40,14 @@
   .file-item button.active{background:var(--brand); color:#fff;}
   .file-item button.active .num{background:rgba(255,255,255,0.25); color:#fff;}
 
+  .status-msg{color:#8b93a0; font-size:11.5px; line-height:1.5; padding:8px 10px; margin:0;}
+  .status-msg.is-error{color:#f0655d;}
+
+  .sidebar-foot{margin-top:auto; padding-top:10px;}
+  .refresh-btn{width:100%; display:flex; align-items:center; justify-content:center; gap:6px; background:transparent; border:1px solid rgba(255,255,255,0.12); color:#9aa3b2; border-radius:10px; padding:8px 10px; font-size:11.5px; font-weight:600; cursor:pointer;}
+  .refresh-btn:hover{color:#fff; border-color:rgba(255,255,255,0.25);}
+  [hidden]{display:none !important;}
+
   /* ===== área de conteúdo — troca conforme o item selecionado na barra lateral ===== */
   .viewer{flex:1; min-width:0; background:var(--bg);}
   .viewer iframe{display:block; width:100%; height:100vh; border:0;}
@@ -64,7 +72,11 @@
         <div class="t">Protótipos</div>
       </div>
     </div>
+    <p class="status-msg" id="statusMsg" hidden></p>
     <ul class="file-list" id="fileList"></ul>
+    <div class="sidebar-foot" id="sidebarFoot" hidden>
+      <button class="refresh-btn" id="refreshBtn" type="button">↻ Atualizar lista</button>
+    </div>
   </aside>
   <main class="viewer">
     <iframe id="viewer" title="Visualização do protótipo selecionado"></iframe>
@@ -72,34 +84,109 @@
 </div>
 
 <script>
-  // fonte única da lista — ao criar um novo .html no projeto, adicione uma linha aqui
-  const PAGES = [
-    { label: 'index_dark.html', file: 'index_dark.html' },
-    { label: 'index_light.html', file: 'index_light.html' },
-    { label: 'visao_geral_lhamalog.html', file: 'visao_geral_lhamalog.html' },
-    { label: 'LhamaLog.html', file: 'LhamaLog.html' },
-  ];
+  // ===== lista de verdade: consulta a API do GitHub pra ler os .html que
+  // existem de fato no repositório. Funciona em qualquer navegador (é só
+  // um fetch com CORS liberado pela própria API do GitHub) e tanto faz se
+  // a página está aberta local (file://) ou publicada no GitHub Pages —
+  // nos dois casos ela pergunta pro GitHub, não pro disco/servidor atual.
+  const SELF_FILE = 'index.html'; // não lista a si mesmo
+  const FALLBACK_OWNER = 'Vinicius-Ferrarini';
+  const FALLBACK_REPO = 'lhamalog';
 
-  const listEl = document.getElementById('fileList');
   const iframe = document.getElementById('viewer');
+  const listEl = document.getElementById('fileList');
+  const statusEl = document.getElementById('statusMsg');
+  const sidebarFoot = document.getElementById('sidebarFoot');
+  const refreshBtn = document.getElementById('refreshBtn');
 
-  function selectPage(file, btn){
-    iframe.src = file;
-    document.querySelectorAll('.file-item button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+  let currentFile = null;
+
+  function resolveRepoContext(){
+    // quando publicado como <owner>.github.io/<repo>/..., descobre owner/repo
+    // pela própria URL — senão (aberto local via file://, por exemplo), usa
+    // o repositório fixo deste projeto.
+    const m = location.hostname.match(/^([^.]+)\.github\.io$/i);
+    if (!m) return { owner: FALLBACK_OWNER, repo: FALLBACK_REPO, dir: '' };
+    const parts = location.pathname.split('/').filter(Boolean);
+    return {
+      owner: m[1],
+      repo: parts[0] || FALLBACK_REPO,
+      dir: parts.slice(1, -1).join('/'),
+    };
   }
 
-  PAGES.forEach((page, i) => {
-    const li = document.createElement('li');
-    li.className = 'file-item';
-    const btn = document.createElement('button');
-    btn.innerHTML = '<span class="num">' + (i + 1) + '</span><span class="label">' + page.label + '</span>';
-    btn.addEventListener('click', () => selectPage(page.file, btn));
-    li.appendChild(btn);
-    listEl.appendChild(li);
+  function setStatus(message, isError){
+    statusEl.hidden = !message;
+    statusEl.textContent = message || '';
+    statusEl.classList.toggle('is-error', !!isError);
+  }
 
-    if (i === 0) selectPage(page.file, btn);
-  });
+  function selectFile(file, btn){
+    currentFile = file;
+    iframe.src = file;
+    document.querySelectorAll('.file-item button').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+  }
+
+  function renderList(files){
+    listEl.innerHTML = '';
+    if (files.length === 0){
+      setStatus('Nenhum outro .html encontrado no repositório.');
+      currentFile = null;
+      iframe.src = '';
+      return;
+    }
+    setStatus('');
+    let btnToSelect = null;
+    files.forEach((name, i) => {
+      const li = document.createElement('li');
+      li.className = 'file-item';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.innerHTML = '<span class="num">' + (i + 1) + '</span><span class="label">' + name + '</span>';
+      btn.addEventListener('click', () => selectFile(name, btn));
+      li.appendChild(btn);
+      listEl.appendChild(li);
+
+      if (name === currentFile) btnToSelect = btn;
+      if (!btnToSelect && i === 0) btnToSelect = btn;
+    });
+    const name = btnToSelect.querySelector('.label').textContent;
+    selectFile(name, btnToSelect);
+  }
+
+  async function loadFileList(){
+    setStatus('Carregando lista do GitHub…');
+    sidebarFoot.hidden = true;
+
+    const { owner, repo, dir } = resolveRepoContext();
+    const url = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + dir;
+
+    try{
+      const res = await fetch(url, { headers: { Accept: 'application/vnd.github+json' } });
+      if (!res.ok){
+        if (res.status === 403) throw new Error('Limite de requisições da API do GitHub atingido — tente de novo em alguns minutos.');
+        if (res.status === 404) throw new Error('Repositório/pasta não encontrado no GitHub (' + owner + '/' + repo + ').');
+        throw new Error('GitHub respondeu ' + res.status + '.');
+      }
+      const data = await res.json();
+      const files = data
+        .filter(item => item.type === 'file' && /\.html?$/i.test(item.name) && item.name.toLowerCase() !== SELF_FILE)
+        .map(item => item.name)
+        .sort((a, b) => a.localeCompare(b, 'pt-BR'));
+
+      renderList(files);
+    } catch(err){
+      console.warn('Falha ao listar arquivos do GitHub:', err);
+      listEl.innerHTML = '';
+      setStatus('⚠ ' + (err.message || 'Não foi possível carregar a lista.'), true);
+    } finally {
+      sidebarFoot.hidden = false;
+    }
+  }
+
+  refreshBtn.addEventListener('click', loadFileList);
+  loadFileList();
 </script>
 </body>
 </html>
