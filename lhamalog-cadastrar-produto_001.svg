@@ -1,0 +1,351 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024" fill="none" font-family="Poppins, 'Segoe UI', Arial, sans-serif" font-weight="400">
+  <title>LhamaLog - Cadastrar produto</title>
+
+  <!-- ============ FUNDO ============ -->
+  <g id="Fundo">
+    <rect id="Fundo-Pagina" width="1536" height="1024" fill="#F5F5F5"/>
+  </g>
+
+  <!-- ============ HEADER ============ -->
+  <g id="Header">
+    <rect id="Header-Fundo" x="0" y="0" width="1536" height="63" fill="#FFFFFF"/>
+    <line id="Header-Borda" x1="0" y1="63.5" x2="1536" y2="63.5" stroke="#141826" stroke-opacity="0.12"/>
+
+    <g id="Header-Menu-Hamburger" stroke="#141826" stroke-width="2" stroke-linecap="round">
+      <line x1="26" y1="25" x2="46" y2="25"/>
+      <line x1="26" y1="32" x2="46" y2="32"/>
+      <line x1="26" y1="39" x2="46" y2="39"/>
+    </g>
+
+    <g id="Header-Logo">
+      <g id="Logo-Icone" transform="translate(72 10) scale(0.04318) translate(-288 -178)">
+        <path id="Logo-Lhama-Azul-Escuro" d="M760 178 C740 178 729 195 731 225 C735 300 742 400 745 489 L842 587 L842 766 L720 890 C675 940 620 1005 580 1058 L953 1058 L855 587 C875 535 890 470 890 430 C888 350 850 260 790 195 C780 185 770 178 760 178 Z" fill="#033473"/>
+        <path id="Logo-Lhama-Azul-Claro" d="M595 193 C582 193 569 205 570 232 C576 300 592 390 622 483 L316 577 Q288 585 288 612 L288 752 Q288 787 322 789 L542 797 L541 1058 L580 1058 C620 1005 675 940 720 890 L842 766 L842 587 L745 489 C735 400 705 270 625 207 C615 198 605 193 595 193 Z" fill="#0C70F2"/>
+      </g>
+      <text id="Logo-Texto" x="106" y="40" font-size="22" font-weight="800" fill="#141826">LhamaLog</text>
+    </g>
+
+    <g id="Header-Seletor-Projeto">
+      <rect id="Seletor-Fundo" x="961.500" y="11.500" width="221" height="40" rx="8" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+      <g id="Seletor-Icone" transform="translate(985 31)" stroke="#141826" stroke-width="1.600" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M0 -8 L9 -3 L0 2 L-9 -3 Z"/>
+        <path d="M-9 1 L0 6 L9 1"/>
+        <path d="M-9 5 L0 10 L9 5"/>
+      </g>
+      <text id="Seletor-Label" x="1009" y="25" font-size="11" fill="#141826" fill-opacity="0.65">Projeto</text>
+      <text id="Seletor-Valor" x="1009" y="43" font-size="14" fill="#141826" font-weight="300">Plataforma Web</text>
+      <path id="Seletor-Chevron" d="M1159 29 L1163 33 L1167 29" stroke="#141826" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <g id="Header-Notificacoes">
+      <path id="Sino" d="M1216 38 L1232 38 L1230 34 L1230 27 A6 6 0 0 0 1218 27 L1218 34 Z M1222 41 A2 2 0 0 0 1226 41" stroke="#141826" stroke-width="1.700" stroke-linejoin="round" stroke-linecap="round"/>
+      <g id="Sino-Badge"><circle id="Sino-Badge-Fundo" cx="1233" cy="20" r="6.500" fill="#E01B25"/><text id="Sino-Badge-Numero" x="1233" y="23.200" font-size="9" font-weight="600" fill="#FFFFFF" text-anchor="middle">1</text></g>
+    </g>
+
+    <g id="Header-Ajuda">
+      <circle id="Ajuda-Circulo" cx="1279" cy="31" r="10.500" stroke="#141826" stroke-width="1.700"/>
+      <text id="Ajuda-Interrogacao" x="1279" y="36" font-size="14" font-weight="500" fill="#141826" text-anchor="middle">?</text>
+    </g>
+
+    <g id="Header-Usuario">
+      <circle id="Avatar-Fundo" cx="1347" cy="31" r="19" fill="#0D65D9"/>
+      <text id="Avatar-Iniciais" x="1347" y="37" font-size="15" font-weight="600" fill="#FFFFFF" text-anchor="middle">JS</text>
+      <text id="Usuario-Nome" x="1379" y="27" font-size="15" fill="#141826" font-weight="500">João Silva</text>
+      <text id="Usuario-Perfil" x="1379" y="47" font-size="14" fill="#141826" fill-opacity="0.65">Administrador</text>
+      <path id="Usuario-Chevron" d="M1497 31 L1501 35 L1505 31" stroke="#141826" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <!-- ============ TITULO DA PAGINA ============ -->
+  <g id="Titulo-Pagina">
+    <path id="Botao-Voltar" d="M54 101 H37 M44 94 L37 101 L44 108" stroke="#141826" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text id="Titulo" x="77" y="109" font-size="28" font-weight="800" fill="#141826">Cadastrar produto</text>
+    <text id="Subtitulo" x="77" y="134" font-size="14.500" fill="#141826" fill-opacity="0.65">Cadastre o software, serviço ou aplicação da empresa que será monitorado e terá seus logs analisados pelo LhamaLog.</text>
+  </g>
+
+  <!-- ============ ABAS ============ -->
+  <g id="Abas">
+    <line id="Abas-Linha-Base" x1="35" y1="208.500" x2="1104" y2="208.500" stroke="#141826" stroke-opacity="0.12"/>
+    <g id="Aba-Informacoes-Produto-Ativa">
+      <rect id="Aba1-Fundo" x="35" y="160" width="249" height="49" rx="6" fill="#0C70F2" fill-opacity="0.1"/>
+      <rect id="Aba1-Indicador" x="35" y="207" width="249" height="2" fill="#0C70F2"/>
+      <g id="Aba1-Icone" transform="translate(69 183)" stroke="#0C70F2" stroke-width="1.700" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M0 -9 L8 -4.500 L8 4.500 L0 9 L-8 4.500 L-8 -4.500 Z"/>
+        <path d="M-8 -4.500 L0 0 L8 -4.500 M0 0 L0 9"/>
+      </g>
+      <text id="Aba1-Texto" x="96" y="189" font-size="14" fill="#0C70F2" font-weight="500">Informações do produto</text>
+    </g>
+    <g id="Aba-Contexto-IA">
+      <g id="Aba2-Icone" transform="translate(326 183)" stroke="#141826" stroke-width="1.600" stroke-linejoin="round" stroke-linecap="round">
+        <rect x="-8" y="-10" width="16" height="20" rx="2"/>
+        <path d="M-4 -4 H4 M-4 0 H4 M-4 4 H1"/>
+      </g>
+      <text id="Aba2-Texto" x="355" y="189" font-size="14" fill="#141826" font-weight="500">Contexto para IA</text>
+    </g>
+    <g id="Aba-Integracao-OpenTelemetry">
+      <g id="Aba3-Icone" transform="translate(544 183)" stroke="#141826" stroke-width="1.700" stroke-linecap="round" stroke-linejoin="round"><g transform="rotate(-45)"><rect x="-11" y="-4" width="12" height="8" rx="4"/><rect x="-1" y="-4" width="12" height="8" rx="4"/></g></g>
+      <text id="Aba3-Texto" x="572" y="189" font-size="14" fill="#141826" font-weight="500">Integração OpenTelemetry</text>
+    </g>
+  </g>
+
+  <!-- ============ CARD 1: INFORMACOES BASICAS ============ -->
+  <g id="Card-1-Informacoes-Basicas">
+    <rect id="Card1-Fundo" x="35.500" y="224.500" width="1069" height="282" rx="10" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+
+    <g id="Card1-Cabecalho">
+      <rect id="Card1-Icone-Fundo" x="49" y="237" width="40" height="40" rx="10" fill="#0C70F2" fill-opacity="0.1"/>
+      <g id="Card1-Icone" transform="translate(69 257)" stroke="#0C70F2" stroke-width="1.700" stroke-linejoin="round" stroke-linecap="round">
+        <rect x="-9" y="-10" width="18" height="20" rx="3" fill="#0C70F2" fill-opacity="0.200"/>
+        <path d="M-5 -4 H5 M-5 1 H2"/>
+      </g>
+      <text id="Card1-Titulo" x="104" y="256" font-size="17" font-weight="600" fill="#141826">1. Informações básicas</text>
+      <text id="Card1-Subtitulo" x="104" y="276" font-size="14" fill="#141826" fill-opacity="0.65">Defina as informações principais do produto.</text>
+    </g>
+
+    <g id="Campo-Nome-do-Produto">
+      <text id="NomeProduto-Label" x="54" y="307" font-size="14" font-weight="500" fill="#141826">Nome do produto</text>
+      <text id="NomeProduto-Obrigatorio" x="180.4" y="307" font-size="14" font-weight="500" fill="#E01B25">*</text>
+      <rect id="NomeProduto-Input" x="54.500" y="319.500" width="510" height="31" rx="6" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+      <text id="NomeProduto-Valor" x="66" y="338" font-size="13" fill="#141826" font-weight="300">API de Pagamentos</text>
+      <text id="NomeProduto-Ajuda" x="54" y="366" font-size="11" fill="#141826" fill-opacity="0.65">Nome que identifica o sistema, serviço ou aplicação na sua empresa.</text>
+    </g>
+
+    <g id="Campo-Descricao">
+      <text id="Descricao-Label" x="588" y="309" font-size="14" font-weight="500" fill="#141826">Descrição</text>
+      <rect id="Descricao-Textarea" x="588.500" y="319.500" width="498" height="58" rx="6" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+      <text id="Descricao-Valor-Linha1" x="601" y="338" font-size="13" fill="#141826" font-weight="300">Serviço responsável pelo processamento de pagamentos da plataforma,</text>
+      <text id="Descricao-Valor-Linha2" x="601" y="356" font-size="13" fill="#141826" font-weight="300">incluindo transações, estornos e consultas.</text>
+      <path id="Descricao-Resize" d="M1080 375 L1084 371 M1077 375 L1084 368" stroke="#141826" stroke-opacity="0.4" stroke-width="1" stroke-linecap="round"/>
+      <text id="Descricao-Ajuda" x="588" y="394" font-size="11" fill="#141826" fill-opacity="0.65">Descreva a finalidade e o contexto do produto.</text>
+    </g>
+
+    <g id="Campo-Tipo-de-Produto">
+      <text id="TipoProduto-Label" x="54" y="425" font-size="14" font-weight="500" fill="#141826">Tipo de produto</text>
+      <text id="TipoProduto-Obrigatorio" x="167.9" y="425" font-size="14" font-weight="500" fill="#E01B25">*</text>
+      <rect id="TipoProduto-Select" x="54.500" y="436.500" width="510" height="30" rx="6" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+      <g id="TipoProduto-Icone" transform="translate(75 451.500)" stroke="#141826" stroke-width="1.500" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M0 -8 L7 -4 L7 4 L0 8 L-7 4 L-7 -4 Z M-7 -4 L0 0 L7 -4 M0 0 L0 8"/>
+      </g>
+      <text id="TipoProduto-Valor" x="102" y="456" font-size="13" fill="#141826" font-weight="300">Aplicação Web</text>
+      <path id="TipoProduto-Chevron" d="M543 449.500 L547 453.500 L551 449.500" stroke="#141826" stroke-width="1.700" stroke-linecap="round" stroke-linejoin="round"/>
+      <text id="TipoProduto-Ajuda" x="54" y="484" font-size="11" fill="#141826" fill-opacity="0.65">Selecione o tipo que melhor representa o produto.</text>
+    </g>
+
+    <g id="Campo-Ambiente">
+      <text id="Ambiente-Label" x="588" y="425" font-size="14" font-weight="500" fill="#141826">Ambiente</text>
+      <text id="Ambiente-Obrigatorio" x="659.1" y="425" font-size="14" font-weight="500" fill="#E01B25">*</text>
+      <rect id="Ambiente-Select" x="588.500" y="436.500" width="498" height="30" rx="6" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+      <g id="Ambiente-Icone" transform="translate(611 451.500)" stroke="#141826" stroke-width="1.500" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M0 -8 L8 -3.500 L0 1 L-8 -3.500 Z M-8 0.500 L0 5 L8 0.500 M-8 4.500 L0 9 L8 4.500"/>
+      </g>
+      <text id="Ambiente-Valor" x="637" y="456" font-size="13" fill="#141826" font-weight="300">Produção</text>
+      <path id="Ambiente-Chevron" d="M1064 449.500 L1068 453.500 L1072 449.500" stroke="#141826" stroke-width="1.700" stroke-linecap="round" stroke-linejoin="round"/>
+      <text id="Ambiente-Ajuda" x="588" y="484" font-size="11" fill="#141826" fill-opacity="0.65">Ambiente onde o produto está em execução.</text>
+    </g>
+  </g>
+
+  <!-- ============ CARD 2: IDENTIFICACAO DO SISTEMA ============ -->
+  <g id="Card-2-Identificacao-do-Sistema">
+    <rect id="Card2-Fundo" x="35.500" y="520.500" width="1069" height="244" rx="10" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+
+    <g id="Card2-Cabecalho">
+      <rect id="Card2-Icone-Fundo" x="51" y="531" width="40" height="40" rx="10" fill="#0C70F2" fill-opacity="0.1"/>
+      <g id="Card2-Icone" transform="translate(71 551)" fill="#0C70F2">
+        <circle cx="0" cy="-5" r="4"/>
+        <circle cx="-9" cy="-3" r="3"/>
+        <circle cx="9" cy="-3" r="3"/>
+        <path d="M-7 8 A7 6 0 0 1 7 8 Z"/>
+        <path d="M-14 8 A5 5 0 0 1 -8 2 L-8 8 Z M14 8 A5 5 0 0 0 8 2 L8 8 Z"/>
+      </g>
+      <text id="Card2-Titulo" x="110" y="550" font-size="17" font-weight="600" fill="#141826">2. Identificação do sistema</text>
+      <text id="Card2-Subtitulo" x="110" y="570" font-size="14" fill="#141826" fill-opacity="0.65">Informe a área, equipe e detalhes de identificação do sistema.</text>
+    </g>
+
+    <g id="Campo-Dominio-Area">
+      <text id="Dominio-Label" x="54" y="595" font-size="14" font-weight="500" fill="#141826">Domínio / Área</text>
+      <text id="Dominio-Obrigatorio" x="162.6" y="595" font-size="14" font-weight="500" fill="#E01B25">*</text>
+      <rect id="Dominio-Select" x="54.500" y="606.500" width="510" height="30" rx="6" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+      <g id="Dominio-Icone" transform="translate(75 621.500)" stroke="#141826" stroke-width="1.500" stroke-linejoin="round" stroke-linecap="round">
+        <rect x="-6" y="-8" width="12" height="16" rx="1"/>
+        <path d="M-3 -4 H-1 M2 -4 H4 M-3 0 H-1 M2 0 H4 M-1 8 V4 H1 V8"/>
+      </g>
+      <text id="Dominio-Valor" x="102" y="626" font-size="13" fill="#141826" font-weight="300">Financeiro</text>
+      <path id="Dominio-Chevron" d="M543 619.500 L547 623.500 L551 619.500" stroke="#141826" stroke-width="1.700" stroke-linecap="round" stroke-linejoin="round"/>
+      <text id="Dominio-Ajuda" x="54" y="654" font-size="11" fill="#141826" fill-opacity="0.65">Área de negócio ou domínio ao qual o sistema pertence.</text>
+    </g>
+
+    <g id="Campo-Equipe-Responsavel">
+      <text id="Equipe-Label" x="588" y="595" font-size="14" font-weight="500" fill="#141826">Equipe responsável</text>
+      <text id="Equipe-Obrigatorio" x="727.7" y="595" font-size="14" font-weight="500" fill="#E01B25">*</text>
+      <rect id="Equipe-Select" x="588.500" y="606.500" width="498" height="30" rx="6" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+      <g id="Equipe-Icone" transform="translate(611 621.500)" stroke="#141826" stroke-width="1.500" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="0" cy="-3" r="3"/>
+        <path d="M-6 7 A6 5 0 0 1 6 7"/>
+        <circle cx="-8" cy="-4" r="2"/>
+        <circle cx="8" cy="-4" r="2"/>
+      </g>
+      <text id="Equipe-Valor" x="637" y="626" font-size="13" fill="#141826" font-weight="300">Equipe Plataforma</text>
+      <path id="Equipe-Chevron" d="M1064 619.500 L1068 623.500 L1072 619.500" stroke="#141826" stroke-width="1.700" stroke-linecap="round" stroke-linejoin="round"/>
+      <text id="Equipe-Ajuda" x="588" y="654" font-size="11" fill="#141826" fill-opacity="0.65">Equipe responsável pela manutenção e operação.</text>
+    </g>
+
+    <g id="Campo-Versao">
+      <text id="Versao-Label" x="54" y="683" font-size="14" font-weight="500" fill="#141826">Versão (opcional)</text>
+      <rect id="Versao-Input" x="54.500" y="694.500" width="510" height="30" rx="6" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+      <path id="Versao-Icone" d="M75 704 L69 710 L75 716 M81 704 L87 710 L81 716 M79 702 L77 718" stroke="#141826" stroke-width="1.500" stroke-linecap="round" stroke-linejoin="round" transform="translate(-2 0)"/>
+      <text id="Versao-Valor" x="102" y="715" font-size="13" fill="#141826" font-weight="300">v2.4.0</text>
+      <text id="Versao-Ajuda" x="54" y="743" font-size="11" fill="#141826" fill-opacity="0.65">Informe a versão atual do sistema, se aplicável.</text>
+    </g>
+
+    <g id="Campo-Criticidade">
+      <text id="Criticidade-Label" x="588" y="683" font-size="14" font-weight="500" fill="#141826">Criticidade</text>
+      <text id="Criticidade-Obrigatorio" x="668.0" y="683" font-size="14" font-weight="500" fill="#E01B25">*</text>
+      <rect id="Criticidade-Select" x="588.500" y="694.500" width="498" height="30" rx="6" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+      <g id="Criticidade-Icone" fill="#141826">
+        <rect x="605" y="710" width="2.500" height="8" rx="1"/>
+        <rect x="610" y="704" width="2.500" height="14" rx="1"/>
+        <rect x="615" y="707" width="2.500" height="11" rx="1"/>
+        <rect x="620" y="702" width="2.500" height="16" rx="1"/>
+      </g>
+      <text id="Criticidade-Valor" x="637" y="715" font-size="13" fill="#141826" font-weight="300">Alta</text>
+      <path id="Criticidade-Chevron" d="M1064 708.500 L1068 712.500 L1072 708.500" stroke="#141826" stroke-width="1.700" stroke-linecap="round" stroke-linejoin="round"/>
+      <text id="Criticidade-Ajuda" x="588" y="743" font-size="11" fill="#141826" fill-opacity="0.65">Nível de criticidade para o negócio.</text>
+    </g>
+  </g>
+
+  <!-- ============ CARD 3: VINCULACAO E MONITORAMENTO ============ -->
+  <g id="Card-3-Vinculacao-e-Monitoramento">
+    <rect id="Card3-Fundo" x="35.500" y="779.500" width="1069" height="159" rx="10" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+
+    <g id="Card3-Cabecalho">
+      <rect id="Card3-Icone-Fundo" x="51" y="791" width="40" height="40" rx="10" fill="#0C70F2" fill-opacity="0.1"/>
+      <g id="Card3-Icone" transform="translate(71 811)" stroke="#0C70F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g transform="rotate(-45)"><rect x="-12.500" y="-5" width="14" height="10" rx="5"/><rect x="-1.500" y="-5" width="14" height="10" rx="5"/></g></g>
+      <text id="Card3-Titulo" x="110" y="811" font-size="17" font-weight="600" fill="#141826">3. Vinculação e monitoramento</text>
+      <text id="Card3-Subtitulo" x="110" y="831" font-size="14" fill="#141826" fill-opacity="0.65">Associe o produto ao projeto, defina a aplicação principal e o nível de log padrão.</text>
+    </g>
+
+    <g id="Campo-Projeto">
+      <text id="Projeto-Label" x="54" y="861" font-size="14" font-weight="500" fill="#141826">Projeto</text>
+      <text id="Projeto-Obrigatorio" x="105.1" y="861" font-size="14" font-weight="500" fill="#E01B25">*</text>
+      <rect id="Projeto-Select" x="54.500" y="871.500" width="266" height="31" rx="6" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+      <g id="Projeto-Icone" transform="translate(75 887)" stroke="#141826" stroke-width="1.500" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M0 -8 L7 -4 L7 4 L0 8 L-7 4 L-7 -4 Z M-7 -4 L0 0 L7 -4 M0 0 L0 8"/>
+      </g>
+      <text id="Projeto-Valor" x="101" y="892" font-size="13" fill="#141826" font-weight="300">Plataforma Web</text>
+      <path id="Projeto-Chevron" d="M298 885 L302 889 L306 885" stroke="#141826" stroke-width="1.700" stroke-linecap="round" stroke-linejoin="round"/>
+      <text id="Projeto-Ajuda" x="54" y="920" font-size="11" fill="#141826" fill-opacity="0.65">O produto será vinculado a este projeto.</text>
+    </g>
+
+    <g id="Campo-Aplicacao-Principal">
+      <text id="AppPrincipal-Label" x="343" y="861" font-size="14" font-weight="500" fill="#141826">Aplicação principal / Serviço</text>
+      <text id="AppPrincipal-Obrigatorio" x="548.5" y="861" font-size="14" font-weight="500" fill="#E01B25">*</text>
+      <rect id="AppPrincipal-Select" x="343.500" y="871.500" width="275" height="31" rx="6" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+      <g id="AppPrincipal-Icone" transform="translate(365 887)" stroke="#141826" stroke-width="1.500" stroke-linejoin="round" stroke-linecap="round">
+        <rect x="-7" y="-8" width="14" height="16" rx="2"/>
+        <path d="M-3 -3 H3 M-3 0 H3 M-3 3 H0"/>
+      </g>
+      <text id="AppPrincipal-Valor" x="391" y="892" font-size="13" fill="#141826" font-weight="300">Gateway de Pagamentos</text>
+      <path id="AppPrincipal-Chevron" d="M597 885 L601 889 L605 885" stroke="#141826" stroke-width="1.700" stroke-linecap="round" stroke-linejoin="round"/>
+      <text id="AppPrincipal-Ajuda" x="343" y="920" font-size="11" fill="#141826" fill-opacity="0.65">Serviço ou aplicação principal que enviará os logs.</text>
+    </g>
+
+    <g id="Campo-Nivel-de-Log">
+      <text id="NivelLog-Label" x="642" y="861" font-size="14" font-weight="500" fill="#141826">Nível de log padrão</text>
+      <text id="NivelLog-Obrigatorio" x="781.6" y="861" font-size="14" font-weight="500" fill="#E01B25">*</text>
+      <rect id="NivelLog-Select" x="642.500" y="871.500" width="213" height="31" rx="6" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+      <g id="NivelLog-Icone" fill="#141826">
+        <rect x="656" y="887" width="2.500" height="8" rx="1"/>
+        <rect x="661" y="881" width="2.500" height="14" rx="1"/>
+        <rect x="666" y="884" width="2.500" height="11" rx="1"/>
+        <rect x="671" y="879" width="2.500" height="16" rx="1" transform="translate(-4 0)"/>
+      </g>
+      <text id="NivelLog-Valor" x="688" y="892" font-size="13" fill="#141826" font-weight="300">INFO</text>
+      <path id="NivelLog-Chevron" d="M834 885 L838 889 L842 885" stroke="#141826" stroke-width="1.700" stroke-linecap="round" stroke-linejoin="round"/>
+      <text id="NivelLog-Ajuda" x="642" y="920" font-size="11" fill="#141826" fill-opacity="0.65">Nível mínimo de logs que serão coletados.</text>
+    </g>
+
+    <g id="Campo-Produto-Ativo">
+      <rect id="Toggle-Trilho" x="879" y="846" width="44" height="24" rx="12" fill="#0C70F2"/>
+      <circle id="Toggle-Bolinha" cx="911" cy="858" r="9" fill="#FFFFFF"/>
+      <text id="ProdutoAtivo-Label" x="935" y="861" font-size="14" font-weight="500" fill="#141826">Produto ativo</text>
+      <text id="ProdutoAtivo-Ajuda-Linha1" x="935" y="884" font-size="11" fill="#141826" fill-opacity="0.65">Habilita a coleta e análise</text>
+      <text id="ProdutoAtivo-Ajuda-Linha2" x="935" y="899" font-size="11" fill="#141826" fill-opacity="0.65">de logs deste produto.</text>
+    </g>
+  </g>
+
+  <!-- ============ SIDEBAR: SOBRE O CADASTRO ============ -->
+  <g id="Sidebar-Sobre-o-Cadastro">
+    <rect id="Sobre-Fundo" x="1124.500" y="219.500" width="381" height="329" rx="10" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+    <g id="Sobre-Icone-Livro" transform="translate(1155 248)" fill="#0C70F2">
+      <path d="M-11 -8 Q-5 -9 -1 -6 L-1 9 Q-5 6 -11 7 Z"/>
+      <path d="M11 -8 Q5 -9 1 -6 L1 9 Q5 6 11 7 Z"/>
+    </g>
+    <text id="Sobre-Titulo" x="1184" y="253" font-size="16" font-weight="600" fill="#141826">Sobre o cadastro</text>
+    <g id="Sobre-Paragrafo" font-size="12" fill="#141826" fill-opacity="0.65">
+      <text id="Sobre-Linha1" x="1152" y="283">Um produto representa um software, serviço, API,</text>
+      <text id="Sobre-Linha2" x="1152" y="302">website, aplicativo mobile, job em batch ou sistema</text>
+      <text id="Sobre-Linha3" x="1152" y="321">interno da empresa, a partir do qual você deseja</text>
+      <text id="Sobre-Linha4" x="1152" y="341">centralizar os logs e ter observabilidade no LhamaLog.</text>
+    </g>
+    <line id="Sobre-Divisor" x1="1152" y1="361.500" x2="1481" y2="361.500" stroke="#141826" stroke-opacity="0.12"/>
+    <text id="Sobre-Exemplos-Titulo" x="1152" y="388" font-size="14" font-weight="500" fill="#141826">Exemplos:</text>
+    <g id="Sobre-Lista-Exemplos" font-size="12" fill="#141826" fill-opacity="0.65">
+      <g id="Exemplo-1"><circle cx="1159" cy="409" r="3" fill="#0C70F2"/><text x="1176" y="413">APIs e serviços de backend</text></g>
+      <g id="Exemplo-2"><circle cx="1159" cy="430" r="3" fill="#0C70F2"/><text x="1176" y="434">Aplicações web ou mobile</text></g>
+      <g id="Exemplo-3"><circle cx="1159" cy="452" r="3" fill="#0C70F2"/><text x="1176" y="456">Sistemas internos da empresa</text></g>
+      <g id="Exemplo-4"><circle cx="1159" cy="473" r="3" fill="#0C70F2"/><text x="1176" y="477">Jobs e processos em batch</text></g>
+      <g id="Exemplo-5"><circle cx="1159" cy="494" r="3" fill="#0C70F2"/><text x="1176" y="498">Ferramentas e serviços de terceiros</text></g>
+      <g id="Exemplo-6"><circle cx="1159" cy="515" r="3" fill="#0C70F2"/><text x="1176" y="519">Qualquer sistema que gere logs relevantes</text></g>
+    </g>
+  </g>
+
+  <!-- ============ SIDEBAR: BOAS PRATICAS ============ -->
+  <g id="Sidebar-Boas-Praticas">
+    <rect id="Boas-Fundo" x="1124.500" y="565.500" width="381" height="261" rx="10" fill="#FFFFFF" stroke="#141826" stroke-opacity="0.12"/>
+    <g id="Boas-Icone-Lampada" transform="translate(1157 595)">
+      <circle cx="0" cy="-2" r="8" fill="#FED533"/>
+      <rect x="-4" y="6" width="8" height="4" rx="1.500" fill="#FED533"/>
+    </g>
+    <text id="Boas-Titulo" x="1185" y="598" font-size="16" font-weight="600" fill="#141826">Boas práticas</text>
+    <text id="Boas-Subtitulo-Linha1" x="1184" y="620" font-size="11" fill="#141826" fill-opacity="0.65">Siga estas recomendações para um cadastro mais</text>
+    <text id="Boas-Subtitulo-Linha2" x="1184" y="638" font-size="11" fill="#141826" fill-opacity="0.65">eficiente e organizado.</text>
+
+    <g id="Boas-Lista" font-size="12" fill="#141826" fill-opacity="0.65">
+      <g id="Pratica-1">
+        <path id="Check-1" d="M1152 664 L1157 669 L1167 659" fill="none" stroke="#0C70F2" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="1185" y="669">Utilize nomes claros e descritivos.</text>
+      </g>
+      <g id="Pratica-2">
+        <path id="Check-2" d="M1152 691 L1157 696 L1167 686" fill="none" stroke="#0C70F2" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="1185" y="696">Mantenha um cadastro por sistema, serviço</text>
+        <text x="1185" y="715">ou aplicação.</text>
+      </g>
+      <g id="Pratica-3">
+        <path id="Check-3" d="M1152 737 L1157 742 L1167 732" fill="none" stroke="#0C70F2" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="1185" y="742">Associe o produto ao projeto correto.</text>
+      </g>
+      <g id="Pratica-4">
+        <path id="Check-4" d="M1152 764 L1157 769 L1167 759" fill="none" stroke="#0C70F2" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="1185" y="769">Informe a equipe responsável.</text>
+      </g>
+      <g id="Pratica-5">
+        <path id="Check-5" d="M1152 791 L1157 796 L1167 786" fill="none" stroke="#0C70F2" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="1185" y="796">Descreva a finalidade e o contexto do sistema.</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ============ FOOTER ============ -->
+  <g id="Footer">
+    <rect id="Footer-Fundo" x="0" y="953" width="1536" height="71" fill="#FFFFFF"/>
+    <line id="Footer-Borda" x1="0" y1="953.500" x2="1536" y2="953.500" stroke="#141826" stroke-opacity="0.12"/>
+    <g id="Botao-Cancelar">
+      <rect id="Cancelar-Fundo" x="1227.500" y="967.500" width="101" height="39" rx="4" fill="#FFFFFF" stroke="#0C70F2" stroke-width="1.500"/>
+      <text id="Cancelar-Texto" x="1278" y="991" font-size="13" font-weight="500" fill="#0C70F2" text-anchor="middle">Cancelar</text>
+    </g>
+    <g id="Botao-Cadastrar-Produto">
+      <rect id="Cadastrar-Fundo" x="1343" y="967" width="162" height="40" rx="4" fill="#0C70F2"/>
+      <text id="Cadastrar-Texto" x="1424" y="991" font-size="13" font-weight="500" fill="#FFFFFF" text-anchor="middle">Cadastrar produto</text>
+    </g>
+  </g>
+</svg>
